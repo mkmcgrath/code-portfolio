@@ -4,7 +4,7 @@ This code here is merely an attempt at establishing a template for me to follow 
 
 What is shown here is a simple hello world program in the C programming language.
 
-Like mentioned above, this only exists to demonstrate a path I will follow for future, more complex assignments.
+Like mentioned above, this only exists to demonstrate a path I will follow for future, more complex programs.
 
 # Video Demonstration
 
