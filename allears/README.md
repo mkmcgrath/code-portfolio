@@ -1,9 +1,11 @@
 # Overview
 
+[Note: This software is still in development- this is not a functioning application at the current moment in time]
 
 **All Ears** is a simple terminal-based wardriving tool that scans nearby Wi-Fi networks and logs their details along with GPS coordinates. Using a GPS and Wi-Fi module, it collects metadata like SSID, signal strength, encryption type, and location as you move around. The data can be exported to CSV for easy analysis and querying.
 
-## Key Features:
+## Key Features
+
 - Scan for Wi-Fi networks and capture metadata
 - Log GPS coordinates with each network
 - Export data in CSV format
@@ -21,4 +23,4 @@ Eventually, I would like to rewrite this program in C so it can run on weaker an
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [What is Wardriving?](https://en.wikipedia.org/wiki/Wardriving)
+- [What is Wardriving?](https://en.wikipedia.org/wiki/Wardriving)
