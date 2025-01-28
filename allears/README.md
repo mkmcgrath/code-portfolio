@@ -22,5 +22,4 @@ Eventually, I would like to rewrite this program in C so it can run on weaker an
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
 - [What is Wardriving?](https://en.wikipedia.org/wiki/Wardriving)
