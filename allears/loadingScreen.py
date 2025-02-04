@@ -34,7 +34,7 @@ def display_banner(stdscr, y_offset):
         "          oooo  oooo                                         ",
         "          `888  `888                                         ",
         " .oooo.    888   888   .ooooo.   .oooo.   oooo d8b  .oooo.o  ",
-        "`P  )88b   888   888  d88' `88b `P  )88b  `888V" "8P d88(  L8 ",
+        "P  )88b   888   888  d88' `88b `P  )88b  `888V" "8P d88(  L8 ",
         " .oPa888   888   888  888ooo888  .oP_888   888     ` Y88b.   ",
         "d8(  888   888   888  888    .o d8(  888   888     o.  )88b  ",
         "`Y888aaa8o o888o o888o Y8bod8P `Y888&^^8o d888b    8&&888P' ",
@@ -43,21 +43,20 @@ def display_banner(stdscr, y_offset):
         "                                                             ",
     ]
 
-    height, width = stdscr.getmaxyx()
+    width = stdscr.getmaxyx()
     for i, line in enumerate(banner):
         x = max(0, (width - len(line)) // 2)
         y = y_offset + i
         stdscr.addstr(y, x, line)
 
 
-def display_gif_and_progress(stdscr, gif_path, tasks):
+def display_gif_and_progress(stdscr, tasks):
     curses.curs_set(0)  # Hide cursor
     height, width = stdscr.getmaxyx()
 
     frame_delay = 0.1  # Adjust as needed
 
     bar_width = width - 4
-    frame_index = 0
 
     for i, (task_name, duration) in enumerate(tasks):
         start_time = time.time()
@@ -86,9 +85,8 @@ def display_gif_and_progress(stdscr, gif_path, tasks):
     stdscr.getch()
 
 
-def main(stdscr):
+def loading(stdscr):
     """Main function to run the curses interface."""
-    gif_path = "ear1.gif"
 
     # Tasks for the loading bar
     tasks = [
@@ -98,8 +96,9 @@ def main(stdscr):
     ]
 
     # Display GIF, banner, and progress bar simultaneously
-    display_gif_and_progress(stdscr, gif_path, tasks)
+    display_gif_and_progress(stdscr, tasks)
+    return 0
 
 
 if __name__ == "__main__":
-    curses.wrapper(main)
+    curses.wrapper(loading)
