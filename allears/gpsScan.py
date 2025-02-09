@@ -2,6 +2,11 @@ import socket
 import json
 import time
 
+# GPSD is necessary to get this software working.
+# At this point, only GPSD is supported, thus limiting the execution of this software to Linux systems.
+# In order to execute this software on your system, tweaks may need to be made.
+# I am currently in the process of making this code more distribution-agnostic.
+
 
 def scan_gps():
     try:

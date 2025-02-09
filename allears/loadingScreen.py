@@ -43,7 +43,8 @@ def display_banner(stdscr, y_offset):
         "                                                             ",
     ]
 
-    width = stdscr.getmaxyx()
+    # width = stdscr.getmaxyx()
+    width = 220
     for i, line in enumerate(banner):
         x = max(0, (width - len(line)) // 2)
         y = y_offset + i
@@ -58,11 +59,17 @@ def display_gif_and_progress(stdscr, tasks):
 
     bar_width = width - 4
 
+    curses.start_color()
+
+    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
+
     for i, (task_name, duration) in enumerate(tasks):
         start_time = time.time()
         elapsed = 0
         while elapsed < duration:
             stdscr.clear()
+
+            stdscr.bkgd(" ", curses.color_pair(1))
 
             # Display banner
             display_banner(stdscr, height // 2 - 5)
@@ -70,8 +77,12 @@ def display_gif_and_progress(stdscr, tasks):
             # Display loading bar
             progress = int(((elapsed + (i / len(tasks))) / len(tasks)) * bar_width)
             bar = "=" * progress + " " * (bar_width - progress)
-            stdscr.addstr(height - 3, 2, f"[{bar}] {i + 1}/{len(tasks)}")
-            stdscr.addstr(height - 2, 2, f"Current Task: {task_name}")
+            stdscr.addstr(
+                height - 3, 2, f"[{bar}] {i + 1}/{len(tasks)}", curses.color_pair(1)
+            )
+            stdscr.addstr(
+                height - 2, 2, f" Current Task: {task_name}", curses.color_pair(1)
+            )
 
             # Refresh screen
             stdscr.refresh()
@@ -80,9 +91,9 @@ def display_gif_and_progress(stdscr, tasks):
             # Update time and frame index
             elapsed = time.time() - start_time
 
-    stdscr.addstr(height - 1, 2, "(Press any key to continue)")
+    stdscr.addstr(height - 1, 2, "(Press any key to continue)", curses.color_pair(1))
     stdscr.refresh()
-    stdscr.getch()
+    # stdscr.getch()
 
 
 def loading(stdscr):
