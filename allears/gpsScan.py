@@ -11,11 +11,13 @@ import time
 def scan_gps():
     try:
         gpsd_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        gpsd_socket.connect(("localhost", 2947))
+        gpsd_socket.connect(
+            ("localhost", 2947)
+        )  # Connect to gpsd server (NEEDS TO BE INITIALIZED PRIOR TO CODE EXECUTION)
 
         gpsdata = None  # Initialize gpsdata to None
 
-        for _ in range(5):  # Increased retries for better chance of fix
+        for _ in range(5):  # 5 retries before exiting with error.
             gpsd_socket.sendall(b'?WATCH={"enable":true, "json":true};\r\n')
             time.sleep(1)
 
@@ -65,7 +67,7 @@ def scan_gps():
                     except json.JSONDecodeError:
                         print("Invalid JSON data received from gpsd.")
 
-        print("No GPS fix acquired after multiple tries.")  # Informative message
+        print("No GPS fix acquired after multiple tries.")  # Error message
         return None  # Return None if no fix after all tries
 
     except Exception as e:
