@@ -17,7 +17,7 @@ def scan_gps():
 
         gpsdata = None  # Initialize gpsdata to None
 
-        for _ in range(5):  # 5 retries before exiting with error.
+        for _ in range(50):  # 5 retries before exiting with error.
             gpsd_socket.sendall(b'?WATCH={"enable":true, "json":true};\r\n')
             time.sleep(1)
 

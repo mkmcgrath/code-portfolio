@@ -1,6 +1,7 @@
 import curses
 import time
 import threading
+import pywifi
 
 
 def main(stdscr):
@@ -70,13 +71,13 @@ def main(stdscr):
 
         control_win.refresh()
 
-    def draw_data_table():
+    def draw_data_table(ssid, bssid):
         data_win.clear()
         data_win.border()
 
         # Column headers
         data_win.addstr(1, 2, "SSID".center(20), curses.A_BOLD)
-        data_win.addstr(1, 22, "MAC Address".center(20), curses.A_BOLD)
+        data_win.addstr(1, 22, "BSSID".center(20), curses.A_BOLD)
         data_win.addstr(1, 42, "Latitude".center(20), curses.A_BOLD)
         data_win.addstr(1, 62, "Longitude".center(20), curses.A_BOLD)
 
@@ -87,6 +88,21 @@ def main(stdscr):
             data_win.addstr(3, 62, longitude.center(20))
 
         data_win.refresh()
+
+    def interface_scan():
+        wifi = pywifi.PyWiFi()
+        interfaces = wifi.interfaces()
+
+        if not interfaces:
+            print("No WiFi interfaces found.")
+            return None
+
+        iface = interfaces[0]  # Assume the first interface is the one to use
+        iface.scan()
+        print("Scanning for networks...")
+
+        results = iface.scan_results()
+        return results
 
     # --- Data Display Logic ---
     ssid = ""
@@ -102,8 +118,8 @@ def main(stdscr):
                 mac_address = "AA:BB:CC:DD:EE:FF"
                 latitude = "37.7749"
                 longitude = "-122.4194"
-
-                draw_data_table()
+                network = interface_scan()
+                draw_data_table(network.bssid, network.bssid)
 
             time.sleep(1)  # Adjust update interval as needed
 
@@ -114,7 +130,7 @@ def main(stdscr):
     # --- Main Loop ---
     while True:
         draw_control_panel()
-        draw_data_table()
+        draw_data_table(ssid, ssid)
 
         key = control_win.getch()
 
@@ -132,8 +148,9 @@ def main(stdscr):
             elif selected_option == 3:
                 is_running = not is_running
                 if is_running:
-                    data_thread = threading.Thread(target=update_data)
-                    data_thread.start()
+                    # data_thread = threading.Thread(target=update_data)
+                    # data_thread.start()
+                    update_data()
                 else:
                     data_thread.join()
         elif key == ord("q"):
