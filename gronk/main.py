@@ -1,4 +1,4 @@
-# Welcome to Grunk - An Improved Adventure Game
+# Welcome to Grunk - An Adventure Game
 
 import secrets
 import time
@@ -153,4 +153,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
