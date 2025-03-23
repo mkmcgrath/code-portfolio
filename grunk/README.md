@@ -4,7 +4,7 @@ Gronk is a proof of concept text based choose your own adventure game.
 
 I created this game because I was inspired by another game by the name of Zork III with a similar idea.
 
-[Software Demo Video](https://www.youtube.com/watch?v=aAXYDEQj3ic)
+[Software Demo Video](https://youtu.be/Zgn0AYAm_UQ)
 
 # Getting Started
 
