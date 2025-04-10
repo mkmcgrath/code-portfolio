@@ -1,6 +1,9 @@
 📘 CRUD Signs
 CRUD Signs is a proof-of-concept terminal-based tool for managing orders and client information for a fictional sign company. It demonstrates how you might build a real-world database interface using Python and FastAPI.
 
+Video Explanation and Demonstration
+<https://youtu.be/K0AybMSevS0>
+
 🚀 Getting Started
 Clone the repository and set up a virtual environment:
 
@@ -11,12 +14,12 @@ bash
 cd crud-signs
 
 # create the virtual environment
+
 python -m venv crud_venv
 
 source crud_venv/bin/activate  # or use .\\crud_venv\\Scripts\\activate on Windows
 
 pip install -r requirements.txt
-
 
 ▶️ Running the Application
 First, run the FastAPI backend:
@@ -79,5 +82,4 @@ Web frontend (e.g., React or Svelte)
 🤝 Contributing
 Pull requests welcome! Fork this repo and make your own changse, or feel free to get in touch.
 
-📬 Contact: mkmcgrath.dev@gmail.com
-
+📬 Contact: <mkmcgrath.dev@gmail.com>
